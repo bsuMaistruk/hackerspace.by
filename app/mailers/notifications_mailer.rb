@@ -27,4 +27,11 @@ class NotificationsMailer < ApplicationMailer
     subject = 'Хакерспейс: добро пожаловать обратно'
     mail(to: @user.email, subject: subject)
   end
+
+  def notify_about_last_hour
+    @user = params[:user]
+
+    subject = 'Хакерспейс: у тебя есть час до блокировки'
+    mail(to: @user.email, subject: subject)
+  end
 end
