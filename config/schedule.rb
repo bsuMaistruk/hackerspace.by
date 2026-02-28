@@ -24,6 +24,10 @@ every 1.day, at: '9:00 am' do
   runner 'NotificationsService.notify_telegram'
 end
 
+every 1.day, at: '11:00 pm' do
+  runner 'NotificationsService.notify_last_hour'
+end
+
 every 1.day, at: '12:00 am' do
   runner 'SuspendUsersService.new.set_users_as_suspended'
 end

@@ -8,6 +8,13 @@ class NotificationsService
     end
   end
 
+  def self.notify_last_hour
+    @users = User.allowed.paid.where(paid_until: Date.today)
+    @users.each do |user|
+      NotificationsMailer.with(user: user).notify_about_last_hour.deliver_now
+    end
+  end
+
   def self.notify_telegram
     begin
       tg = TelegramNotifier.new
